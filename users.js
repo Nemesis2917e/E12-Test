@@ -14,9 +14,9 @@ const users = [
     earnings: 600
   },
   {
-    name: "Ahmed",
-    username: "ahmed7",
-    password: "9999",
-    earnings: 1200
+    name: "Shahzaib Bhatti",
+    username: "Shahzaib995",
+    password: "RTum3i",
+    earnings: 50
   }
 ];
