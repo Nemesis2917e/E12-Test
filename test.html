@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>ForgeByte Tech Lucky Draw</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:'Inter',sans-serif;
+  background:#070b14;
+  color:white;
+  overflow-x:hidden;
+}
+
+.bg-glow{
+  position:fixed;
+  width:500px;
+  height:500px;
+  background:#00ff8850;
+  border-radius:50%;
+  filter:blur(120px);
+  top:-150px;
+  right:-120px;
+  z-index:-1;
+}
+
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:20px;
+}
+
+/* HERO */
+
+.hero{
+  text-align:center;
+  padding:50px 20px 30px;
+}
+
+.hero h1{
+  font-size:56px;
+  font-weight:800;
+  margin-bottom:12px;
+}
+
+.hero p{
+  opacity:0.8;
+  font-size:18px;
+  max-width:700px;
+  margin:auto;
+  line-height:1.7;
+}
+
+.prize-box{
+  margin:35px auto;
+  background:linear-gradient(135deg,#00ff88,#00c853);
+  color:black;
+  width:fit-content;
+  padding:22px 40px;
+  border-radius:28px;
+  box-shadow:0 20px 50px rgba(0,255,136,0.18);
+}
+
+.prize-box small{
+  display:block;
+  font-weight:700;
+  opacity:0.7;
+}
+
+.prize-box h2{
+  font-size:48px;
+  margin-top:5px;
+}
+
+.buttons{
+  display:flex;
+  justify-content:center;
+  gap:15px;
+  flex-wrap:wrap;
+  margin-top:10px;
+}
+
+.btn{
+  border:none;
+  padding:15px 24px;
+  border-radius:18px;
+  font-weight:700;
+  cursor:pointer;
+  transition:0.25s;
+  font-size:15px;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+}
+
+.primary{
+  background:linear-gradient(135deg,#00ff88,#00c853);
+  color:black;
+}
+
+.secondary{
+  background:#182235;
+  color:white;
+}
+
+/* COUNTDOWN */
+
+.countdown-section{
+  display:flex;
+  justify-content:center;
+  margin-top:60px;
+}
+
+.countdown-card{
+  width:100%;
+  max-width:760px;
+
+  background:linear-gradient(
+    135deg,
+    rgba(18,26,42,0.95),
+    rgba(12,18,30,0.95)
+  );
+
+  border:1px solid rgba(255,255,255,0.08);
+
+  border-radius:30px;
+
+  padding:40px;
+
+  text-align:center;
+
+  box-shadow:0 25px 60px rgba(0,0,0,0.45);
+}
+
+.countdown-label{
+  font-size:18px;
+  opacity:0.7;
+  margin-bottom:18px;
+  font-weight:600;
+}
+
+.countdown{
+  font-size:58px;
+  font-weight:800;
+  color:#00ff88;
+  letter-spacing:2px;
+}
+
+.countdown-sub{
+  margin-top:18px;
+  opacity:0.7;
+  line-height:1.7;
+}
+
+/* LIST */
+
+.list-section{
+  margin-top:70px;
+}
+
+.section-title{
+  font-size:34px;
+  font-weight:800;
+  margin-bottom:25px;
+}
+
+.entry-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:18px;
+}
+
+.entry-card{
+  background:#121a2a;
+  border:1px solid rgba(255,255,255,0.06);
+  border-radius:24px;
+  padding:22px;
+  transition:0.25s;
+}
+
+.entry-card:hover{
+  transform:translateY(-4px);
+  border-color:#00ff8840;
+}
+
+.entry-name{
+  font-size:20px;
+  font-weight:700;
+}
+
+.entry-count{
+  margin-top:12px;
+  display:inline-block;
+  background:#00ff8820;
+  color:#00ff88;
+  padding:8px 15px;
+  border-radius:999px;
+  font-weight:700;
+}
+
+/* POPUP */
+
+.popup{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.75);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  z-index:100;
+}
+
+.popup-box{
+  max-width:760px;
+  width:100%;
+  background:#101827;
+  border-radius:28px;
+  padding:35px;
+  border:1px solid rgba(255,255,255,0.08);
+}
+
+.popup-box h2{
+  margin-bottom:22px;
+  font-size:32px;
+}
+
+.popup-box p{
+  margin-bottom:18px;
+  line-height:1.8;
+  opacity:0.9;
+}
+
+.close-btn{
+  margin-top:10px;
+  width:100%;
+}
+
+a{
+  text-decoration:none;
+}
+
+.footer{
+  margin-top:80px;
+  padding:25px 0;
+  text-align:center;
+  opacity:0.55;
+  font-size:14px;
+}
+
+@media(max-width:700px){
+
+  .hero h1{
+    font-size:40px;
+  }
+
+  .countdown{
+    font-size:38px;
+  }
+
+  .prize-box h2{
+    font-size:38px;
+  }
+
+}
+
+</style>
+</head>
+<body>
+
+<div class="bg-glow"></div>
+
+<div class="container">
+
+  <!-- HERO -->
+
+  <div class="hero">
+
+    <h1>ForgeByte Tech Lucky Draw</h1>
+
+    <p>
+      Join our monthly community lucky draw for a chance
+      to win exciting rewards and giveaways from ForgeByte Tech.
+      Terms and Conditions Apply*
+    </p>
+
+    <div class="prize-box">
+      <small>TOP PRIZE</small>
+      <h2>5,000 PKR</h2>
+    </div>
+
+    <div class="buttons">
+
+      <a href="https://wa.me/+923324875111/" target="_blank">
+        <button class="btn primary">
+          Register via WhatsApp
+        </button>
+      </a>
+
+      <button class="btn secondary" onclick="openTerms()">
+        Terms & Conditions
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- COUNTDOWN -->
+
+  <div class="countdown-section">
+
+    <div class="countdown-card">
+
+      <div class="countdown-label">
+        Winner Announcement In
+      </div>
+
+      <div class="countdown" id="countdown">
+        00d : 00h : 00m
+      </div>
+
+      <div class="countdown-sub">
+        Winners will be announced publicly after the countdown ends.
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- REGISTERED LIST -->
+
+  <div class="list-section">
+
+    <div class="section-title">
+      Registered List
+    </div>
+
+    <div class="entry-grid">
+
+      <div class="entry-card">
+        <div class="entry-name">Saad Arshad</div>
+        <div class="entry-count">2 Entries</div>
+      </div>
+
+      <div class="entry-card">
+        <div class="entry-name">Tariq Ali</div>
+        <div class="entry-count">1 Entry</div>
+      </div>
+
+
+  <div class="footer">
+    © 2026 ForgeByte Tech — Community Lucky Draw
+  </div>
+
+</div>
+
+<!-- TERMS POPUP -->
+
+<div class="popup" id="popup">
+
+  <div class="popup-box">
+
+    <h2>Terms & Conditions</h2>
+
+    <p>
+      The announced top prize for this lucky draw is 5,000 PKR.
+    </p>
+
+    <p>
+      If ForgeByte Tech generates very low or no revenue during the event period,
+      the top winner may instead receive a reduced payout of 400 PKR.
+    </p>
+
+    <p>
+      If ForgeByte Tech reaches approximately 100 USD in revenue within the month,
+      the full 5,000 PKR prize will be awarded after one month.
+    </p>
+
+    <p>
+      Entry into this lucky draw is completely free.
+      Registering does not require payment.
+    </p>
+
+    <button class="btn primary close-btn" onclick="closeTerms()">
+      Close
+    </button>
+
+  </div>
+
+</div>
+
+<script>
+
+/*
+  Set winner announcement date here
+  Format:
+  YYYY-MM-DDTHH:MM:SS
+*/
+
+const targetDate =
+  new Date("2026-06-10T18:00:00").getTime();
+
+const countdown =
+  document.getElementById("countdown");
+
+function updateCountdown(){
+
+  const now = new Date().getTime();
+
+  const diff = targetDate - now;
+
+  if(diff <= 0){
+
+    countdown.innerText =
+      "Winner Announced";
+
+    return;
+  }
+
+  const days =
+    Math.floor(
+      diff / (1000 * 60 * 60 * 24)
+    );
+
+  const hours =
+    Math.floor(
+      (diff % (1000 * 60 * 60 * 24))
+      /
+      (1000 * 60 * 60)
+    );
+
+  const minutes =
+    Math.floor(
+      (diff % (1000 * 60 * 60))
+      /
+      (1000 * 60)
+    );
+
+  countdown.innerText =
+    `${days}d : ${hours}h : ${minutes}m`;
+}
+
+updateCountdown();
+
+setInterval(updateCountdown,1000);
+
+function openTerms(){
+
+  document.getElementById("popup")
+    .style.display = "flex";
+
+}
+
+function closeTerms(){
+
+  document.getElementById("popup")
+    .style.display = "none";
+
+}
+
+</script>
+
+</body>
+</html>
